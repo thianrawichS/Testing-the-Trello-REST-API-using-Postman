@@ -1,6 +1,6 @@
 # Testing-the-Trello-REST-API-using-Postman
 - Trello's REST API testing (CRUD the `Board` and its `Components`)
-- Once the test is executed, it will <strong>automatically</strong> perform the CRUD (Create, Read, Update, and Delete) operations step by step in the following order (test schedule included in the section below).
+- Once the test is executed, it will <strong>automatically</strong> perform the CRUD (Create, Read, Update, and Delete) operations step by step in the following order ([test schedule](https://github.com/thianrawichS/Testing-the-Trello-REST-API-using-Postman/edit/main/README.md#test-execution-schedule) included in the section below).
 
 ## Purpose
 ``` Functionality Testing ```
@@ -67,3 +67,73 @@
   - <b><i>token</i></b> : Trello authorization token
 
 Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
+- Other Variable will create once you run the collection (created by script in the "Pre-request Script" section)
+
+## Sample Testing Preview
+### Create board
+  ```
+  request: POST
+  url: 'https://api.trello.com/1/boards/?name={{boardName}}&key={{api_key}}&token={{token}}'
+  ```
+  #### Query Parameters
+  | Key | Value |
+  |-----|-------|
+  | name| {{boardName}}|
+  | key | {{api_key}} |
+  | token | {{token}} |
+  #### Pre-request Script
+  ```jsx
+  // set boardName's value to "testingBoard"
+  pm.environment.set("boardName", "testingBoard")
+  ```
+  #### Test scripts
+  ```jsx
+  var jsonData = pm.response.json();
+
+  // set board id
+  pm.environment.set("boardId", jsonData.id);
+
+  // test
+  pm.test("Create board successfully (Status 200)", () => {
+      pm.expect(pm.response.code).to.eql(200)
+  });
+  
+  pm.test("Board name is correct", () => {
+      pm.expect(jsonData.name).to.eql(pm.environment.get("boardName"))
+  });
+  ```
+
+***
+
+### Get/Read a board
+
+  ```
+  request: GET
+  url: 'https://api.trello.com/1/boards/{{boardId}}?key={{api_key}}&token={{token}}'
+  ```
+  #### Query Parameters
+  | Key | Value |
+  |-----|-------|
+  |key| {{api_key}}|
+  |token|{{token}}|
+  #### Test scripts
+  ```jsx
+  pm.test("Get a board successfully", () => {
+    pm.response.to.have.status(200)
+  });
+  ```
+
+***
+
+### Update board
+  ```
+  request: PUT
+  url: 'https://api.trello.com/1/boards/{{boardId}}?key={{api_key}}&token={{token}}&name={{newBoardName}}&desc={{boardDescription}}'
+  ```
+  #### Query Parameters
+  | Key | Value |
+  |-----|-------|
+  |key| {{api_key}}|
+  |token|{{token}}|
+  |name|{{newBoardName}}|
+  |desc|{{boardDescription}}|
