@@ -58,3 +58,6 @@
 | 17   | Delete Card       |
 | 18   | Delete List       |
 | 19   | Delete Board      |
+
+## Test Procedure
+
