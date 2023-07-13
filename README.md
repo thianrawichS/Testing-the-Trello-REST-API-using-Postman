@@ -86,7 +86,7 @@ Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
   // set boardName's value to "testingBoard"
   pm.environment.set("boardName", "testingBoard")
   ```
-  #### Test scripts
+  #### Test Script
   ```jsx
   var jsonData = pm.response.json();
 
@@ -116,7 +116,7 @@ Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
   |-----|-------|
   |key| {{api_key}}|
   |token|{{token}}|
-  #### Test scripts
+  #### Test Script
   ```jsx
   pm.test("Get a board successfully", () => {
     pm.response.to.have.status(200)
@@ -137,3 +137,52 @@ Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
   |token|{{token}}|
   |name|{{newBoardName}}|
   |desc|{{boardDescription}}|
+  #### Pre-request Script
+  ```jsx
+  // set newBoardName's value to "updatedTestingBoard"
+  pm.environment.set("newBoardName", "updatedTestingBoard");
+
+  // set boardDescription
+  pm.environment.set("boardDescription", "This is a board description");
+  ```
+  #### Test Script
+  ```jsx
+  var jsonData = pm.response.json();
+
+  // test
+  pm.test("Update board successfully", () => {
+    pm.response.to.have.status(200)
+  });
+
+  pm.test("Board name changed correctly", () => {
+      pm.expect(jsonData.name).to.eql(pm.environment.get("newBoardName"))
+  });
+  
+  pm.test("Board description has been added", () => {
+      pm.expect(jsonData.desc).to.exist
+  });
+  ```
+
+  ***
+
+### Delete board
+  ```
+  request: DELETE
+  url: 'https://api.trello.com/1/boards/{{boardId}}?key={{api_key}}&token={{token}}'
+  ```
+  #### Query Parameters
+  | Key | Value |
+  |-----|-------|
+  |key| {{api_key}}|
+  |token|{{token}}|
+  #### Test Script
+  ```jsx
+  pm.test("Delete board successfully (Status 200)", () => {
+    pm.expect(pm.response.code).to.eql(200)
+  })
+  ```
+  ***
+  #### Next step
+  - Once you finished create all 4 requests, next thing is to run a collection (Select a Collections > Run collection)
+  - You can choose to run manually or schedule runs(run collection at a specified time)
+  
