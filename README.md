@@ -1,5 +1,16 @@
 # Testing-the-Trello-REST-API-using-Postman
-Trello's REST API testing (CRUD the Board and its components)
+- Trello's REST API testing (CRUD the `Board` and its `Components`)
+- Once the test is executed, it will <strong>automatically</strong> perform the CRUD (Create, Read, Update, and Delete) operations step by step in the following order (test schedule included in the section below).
+
+## Purpose
+``` Functionality Testing ```
+- Ensure that the basic CRUD operations for boards and their components (e.g. list, card, checklist, and checkitem) are functioning correctly.
+  - Creating, reading, updating, and deleting work as expected.
+
+``` Basic Performance Testing ```
+- Ensure that the reponse times of each operation is less than 3 seconds.
+
+
 
 ## Test Case / Execution list
 ### Test Case
