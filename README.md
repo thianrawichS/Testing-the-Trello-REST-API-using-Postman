@@ -60,4 +60,10 @@
 | 19   | Delete Board      |
 
 ## Test Procedure
+- To perform the same test, import the attached `Trello API.postman_collection.json` in the postman.
+- Create Environments
+- Add the Variable to Environments
+  - <b><i>api_key</i></b> : Trello api key
+  - <b><i>token</i></b> : Trello authorization token
 
+Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
