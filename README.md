@@ -184,5 +184,12 @@ Both can get at [trello.com/power-ups/admin](https://trello.com/power-ups/admin)
   ***
   #### Next step
   - Once you finished create all 4 requests, next thing is to run a collection (Select a Collections > Run collection)
+    <img src="https://github.com/thianrawichS/Testing-the-Trello-REST-API-using-Postman/blob/main/Screenshot%201.png" alt="run-collection">
   - You can choose to run manually or schedule runs(run collection at a specified time)
+
+  `Run/Test Summary` <br>
+  <br>
+  <img src="https://github.com/thianrawichS/Testing-the-Trello-REST-API-using-Postman/blob/main/Screenshot%202.png" alt="summary1"><br>
+  <img src="https://github.com/thianrawichS/Testing-the-Trello-REST-API-using-Postman/blob/main/Screenshot%203.png" alt="summary2">
+    
   
